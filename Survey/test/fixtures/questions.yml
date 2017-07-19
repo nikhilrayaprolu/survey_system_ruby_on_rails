@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  question: MyString
+  optioncount: MyString
+  options: MyString
+  created_at: MyString
+  modified_at: MyString
+
+two:
+  question: MyString
+  optioncount: MyString
+  options: MyString
+  created_at: MyString
+  modified_at: MyString

@@ -1,0 +1,63 @@
+<!-- app/views/layout/application.html.erb -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Survey</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
+  <!-- Compiled and minified JavaScript -->
+
+
+</head>
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
+      <ul class="right hide-on-med-and-down">
+        <% if current_user %>
+        
+        <% if current_type=="admin" %>
+        <li><a href="/questions">Questions</a></li>
+        <li><a href="/users">Users</a></li>
+        <% else %>
+        <li><%= current_user.name %> </li><li> <%= link_to "Logout", '/logout' %></li>
+
+        <li><a href="/dashboard">InActive</a></li>
+        <li><a href="/dashboardactive">Active</a></li>
+        <li><a href="/editprofile">Your Profile</li>
+        <% end %>
+        <% else %>
+        <li><%= link_to 'Login', '/login' %></li> <li> <%= link_to 'Signup', '/signup' %></li>
+        <li><%= link_to "Sign in with Facebook", "/auth/google_oauth2", id: "sign_in" %></li>
+        <% end %>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Login</a></li>
+        <li><a href="#">SignUp</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  
+
+  <%= yield %>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+  # added these lines.
+
+
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<div class="container"><h1>Listing Inactive Questions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Text</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inactive.each do |question| %>
+      <tr>
+        <td><%= question["question"] %></td>
+        <td><%= link_to "show", controller: "questions", action: "show", id: question["id"] %></td>
+        
+
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+</div>

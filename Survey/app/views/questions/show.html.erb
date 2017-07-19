@@ -1,0 +1,76 @@
+<div class="container"><p id="notice"><%= notice %></p>
+
+<p>
+	<strong>Textfdsfdsf:</strong>
+
+	<%= @question.question %><br>
+	<%= @question.typeofquestion %>
+	"success"
+
+	<%= @answer.empty? %>
+	<% if @answer.empty? or @question.updated_at > @answer[0].updated_at %>
+	<p>you haven't attempted</p>
+	
+	<form action="/answers" method="post">
+		<%= csrf_meta_tags %>
+		<input type="hidden" name="question_id" value="<%= @question.id %>" />
+		<% if @question.typeofquestion == "Objective"%>
+		
+		<p><input type="radio" name="option" value="1" id="option1" checked > 
+		<label for="option1"><%= @question.option1 %></label></p>
+		<p>
+		<input type="radio" name="option" value="2" id="option2"><label for="option2"> <%= @question.option2 %></label></p>
+		<p>
+		<input type="radio" name="option" value="3" id="option3"> <label for="option3">  <%= @question.option3 %></label></p><p>
+		<input type="radio" name="option" value="3" id="option4"> <label for="option4">  <%= @question.option4 %></label></p>
+
+
+
+		<% end %>
+
+		<% if @question.typeofquestion == "Descriptive"%>
+		<input type="text" name="textcol"><br>
+		<% end %>
+
+		<input type="submit" class="btn button" value="Submit">
+	</form> 
+<% else %>
+<form action="/answers" method="post">
+		<%= csrf_meta_tags %>
+		<input type="hidden" name="question_id" value="<%= @question.id %>" />
+		<% if @question.typeofquestion == "Objective"%>
+		
+		<p><input type="radio" name="option" value="1" id="option1" disabled > 
+		<label for="option1"><%= @question.option1 %></label></p>
+		<p>
+		<input type="radio" name="option" value="2" id="option2" disabled><label for="option2"> <%= @question.option2 %></label></p>
+		<p>
+		<input type="radio" name="option" value="3" id="option3" disabled> <label for="option3">  <%= @question.option3 %></label></p><p>
+		<input type="radio" name="option" value="3" id="option4" disabled> <label for="option4">  <%= @question.option4 %></label></p>
+
+
+
+		<% end %>
+
+		<% if @question.typeofquestion == "Descriptive"%>
+		<input type="text" name="textcol"><br>
+		<% end %>
+
+		<input type="submit" class="btn button" value="Submit">
+	</form>
+	<% @answer.each do |p| %>
+   
+  your answer for this question is <%= p.option %><br>
+<% end %>
+	
+<% end %>
+others options till now
+	<% @question.answers.each do |answer| %>
+	<div>
+		<%= answer.option %>
+		<%= answer.textcol %> by user with id <%=answer.user_id %>
+	</div>
+	<% end %>
+</p>
+
+</div>
